@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "gyumin-blog",
     "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 6, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "palmer penguin\n\n\n\n\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 7, 2025\n\n\nhan\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 6, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post-with-code/index.html",
     "href": "posts/post-with-code/index.html",
     "title": "Post With Code",
     "section": "",
-    "text": "This is a post with executable code.\n\nimport numpy as np\na=np.arange(10)\na\n\narray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])"
+    "text": "# 라이브러리 로드\nfrom palmerpenguins import load_penguins\nimport pandas as pd\n\n# 데이터 불러오기\npenguins = load_penguins()\n\n# 데이터 확인\npenguins.head() # 상위 5개 행 출력\npenguins[\"species\"].unique()  # 종 확인\n\narray(['Adelie', 'Gentoo', 'Chinstrap'], dtype=object)\n\n\n\n\n\n\n\n\n\n\n\nColumn Name\n의미\n예제 값\n\n\n\n\nspecies\n펭귄의 종\nAdelie, Chinstreap, Gentoo\n\n\nisland\n펭귄이 발견된 섬 이름\nTorgersen, Biscoe, Dream\n\n\nbill_length_mm\n부리 길이 (mm)\n39.1, 48.7, 50.0\n\n\nbill_depth_mm\n부리 깊이 (mm)\n18.7, 17.4, 15.9\n\n\nflipper_length_mm\n날개 길이 (mm)\n181, 195, 210\n\n\nbody_mass_g\n체중 (g)\n3750, 3800, 5000\n\n\nsex\n성별\nmale, female\n\n\nyear\n데이터 수집 연도\n2007, 2008, 2009\n\n\n\n\n\n\n\n# 종별 요약 통계 계산\nspecies_summary = penguins.groupby(\"species\").describe()\n\n# 종별 주요 특징 출력\nprint(species_summary['bill_length_mm'])  # 부리 길이\nprint(species_summary['bill_depth_mm'])  # 부리 깊이\nprint(species_summary['flipper_length_mm'])  # 날개 길이\nprint(species_summary['body_mass_g'])  # 몸무게\n\n\n\n종\n부리 길이\n부리 깊이\n날개 길이\n체중\n\n\n\n\nAdelie\n38.79 mm\n18.35 mm\n189.95 mm\n3700 g\n\n\nChinstrap\n48.83 mm\n18.42 mm\n195.82 mm\n3733 g\n\n\nGentoo\n47.50 mm\n14.98 mm\n217.19 mm\n5076 g\n\n\n\n\n\n\n부리 길이: Chinstrap 펭귄이 가장 길고(48.83 mm), Adelie가 가장 짧음(38.79 mm).\n부리 깊이: 세 종 모두 비슷하지만, Gentoo 펭귄이 가장 얕음(14.98 mm).\n날개 길이: Gentoo 펭귄이 가장 길고(217.19 mm), Adelie가 가장 짧음(189.95 mm).\n몸무게: Gentoo 펭귄이 가장 무거움(5076 g), Adelie가 가장 가벼움(3700 g).\n\n\n\n\n\n# 종별 서식지 분포\nspecies_island = penguins.groupby([\"species\", \"island\"]).size()\nprint(species_island)\n\n\n\n종\n서식지\n개체 수\n\n\n\n\nAdelie\nBiscoe\n44\n\n\nAdelie\nDream\n56\n\n\nAdelie\nTorgersen\n52\n\n\nChinstrap\nDream\n68\n\n\nGentoo\nBiscoe\n124\n\n\n\n\n\n\nAdelie 펭귄은 세 개의 섬(Biscoe, Dream, Torgersen) 모두에서 발견됨.\nChinstrap 펭귄은 Dream 섬에서만 발견됨.\nGentoo 펭귄은 Biscoe 섬에서만 발견됨.\n\n\n\n\n\n# 종별 성별 분포\nspecies_sex = penguins.groupby([\"species\", \"sex\"]).size()\nprint(species_sex)\n\n\n\n종(species)\n성별(sex)\n개체 수\n\n\n\n\nAdelie\nMale\n73\n\n\nAdelie\nFemale\n73\n\n\nChinstrap\nMale\n34\n\n\nChinstrap\nFemale\n34\n\n\nGentoo\nMale\n58\n\n\nGentoo\nFemale\n61\n\n\n\n\n\n\n모든 종에서 암수 개체 수가 거의 비슷함.\n성비는 Adelie와 Chinstrap에서 정확히 1:1이며, Gentoo는 수컷이 약간 많음.\n\n\n\n\n\n\n\n\n\n\n\n\n종(Species)\n주요 특징\n\n\n\n\nAdelie\n부리 길이가 가장 짧고, 몸무게가 가장 가벼움 (3700g). 세 개의 섬에서 발견됨.\n\n\nChinstrap\n부리 길이가 가장 길고(48.83 mm), Dream 섬에서만 발견됨.\n\n\nGentoo\n몸무게가 가장 무겁고(5076 g), 날개 길이가 가장 김(217.19 mm). Biscoe 섬에서만 발견됨."
   },
   {
     "objectID": "posts/welcome/index.html",
@@ -26,5 +26,82 @@
     "title": "About",
     "section": "",
     "text": "About this blog"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#데이터-로드-및-기본-정보-확인",
+    "href": "posts/post-with-code/index.html#데이터-로드-및-기본-정보-확인",
+    "title": "Post With Code",
+    "section": "",
+    "text": "# 라이브러리 로드\nfrom palmerpenguins import load_penguins\nimport pandas as pd\n\n# 데이터 불러오기\npenguins = load_penguins()\n\n# 데이터 확인\npenguins.head() # 상위 5개 행 출력\npenguins[\"species\"].unique()  # 종 확인\n\narray(['Adelie', 'Gentoo', 'Chinstrap'], dtype=object)\n\n\n\n\n\n\n\n\n\n\n\nColumn Name\n의미\n예제 값\n\n\n\n\nspecies\n펭귄의 종\nAdelie, Chinstreap, Gentoo\n\n\nisland\n펭귄이 발견된 섬 이름\nTorgersen, Biscoe, Dream\n\n\nbill_length_mm\n부리 길이 (mm)\n39.1, 48.7, 50.0\n\n\nbill_depth_mm\n부리 깊이 (mm)\n18.7, 17.4, 15.9\n\n\nflipper_length_mm\n날개 길이 (mm)\n181, 195, 210\n\n\nbody_mass_g\n체중 (g)\n3750, 3800, 5000\n\n\nsex\n성별\nmale, female\n\n\nyear\n데이터 수집 연도\n2007, 2008, 2009"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#종별-주요-특징-평균값-비교",
+    "href": "posts/post-with-code/index.html#종별-주요-특징-평균값-비교",
+    "title": "Post With Code",
+    "section": "",
+    "text": "# 종별 요약 통계 계산\nspecies_summary = penguins.groupby(\"species\").describe()\n\n# 종별 주요 특징 출력\nprint(species_summary['bill_length_mm'])  # 부리 길이\nprint(species_summary['bill_depth_mm'])  # 부리 깊이\nprint(species_summary['flipper_length_mm'])  # 날개 길이\nprint(species_summary['body_mass_g'])  # 몸무게\n\n\n\n종\n부리 길이\n부리 깊이\n날개 길이\n체중\n\n\n\n\nAdelie\n38.79 mm\n18.35 mm\n189.95 mm\n3700 g\n\n\nChinstrap\n48.83 mm\n18.42 mm\n195.82 mm\n3733 g\n\n\nGentoo\n47.50 mm\n14.98 mm\n217.19 mm\n5076 g\n\n\n\n\n\n\n부리 길이: Chinstrap 펭귄이 가장 길고(48.83 mm), Adelie가 가장 짧음(38.79 mm).\n부리 깊이: 세 종 모두 비슷하지만, Gentoo 펭귄이 가장 얕음(14.98 mm).\n날개 길이: Gentoo 펭귄이 가장 길고(217.19 mm), Adelie가 가장 짧음(189.95 mm).\n몸무게: Gentoo 펭귄이 가장 무거움(5076 g), Adelie가 가장 가벼움(3700 g)."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#종별-서식지island-분포",
+    "href": "posts/post-with-code/index.html#종별-서식지island-분포",
+    "title": "Post With Code",
+    "section": "",
+    "text": "# 종별 서식지 분포\nspecies_island = penguins.groupby([\"species\", \"island\"]).size()\nprint(species_island)\n\n\n\n종\n서식지\n개체 수\n\n\n\n\nAdelie\nBiscoe\n44\n\n\nAdelie\nDream\n56\n\n\nAdelie\nTorgersen\n52\n\n\nChinstrap\nDream\n68\n\n\nGentoo\nBiscoe\n124\n\n\n\n\n\n\nAdelie 펭귄은 세 개의 섬(Biscoe, Dream, Torgersen) 모두에서 발견됨.\nChinstrap 펭귄은 Dream 섬에서만 발견됨.\nGentoo 펭귄은 Biscoe 섬에서만 발견됨."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#종별-성별-sex-분포",
+    "href": "posts/post-with-code/index.html#종별-성별-sex-분포",
+    "title": "Post With Code",
+    "section": "",
+    "text": "# 종별 성별 분포\nspecies_sex = penguins.groupby([\"species\", \"sex\"]).size()\nprint(species_sex)\n\n\n\n종(species)\n성별(sex)\n개체 수\n\n\n\n\nAdelie\nMale\n73\n\n\nAdelie\nFemale\n73\n\n\nChinstrap\nMale\n34\n\n\nChinstrap\nFemale\n34\n\n\nGentoo\nMale\n58\n\n\nGentoo\nFemale\n61\n\n\n\n\n\n\n모든 종에서 암수 개체 수가 거의 비슷함.\n성비는 Adelie와 Chinstrap에서 정확히 1:1이며, Gentoo는 수컷이 약간 많음."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#결론-종별-특징-요약",
+    "href": "posts/post-with-code/index.html#결론-종별-특징-요약",
+    "title": "Post With Code",
+    "section": "",
+    "text": "종(Species)\n주요 특징\n\n\n\n\nAdelie\n부리 길이가 가장 짧고, 몸무게가 가장 가벼움 (3700g). 세 개의 섬에서 발견됨.\n\n\nChinstrap\n부리 길이가 가장 길고(48.83 mm), Dream 섬에서만 발견됨.\n\n\nGentoo\n몸무게가 가장 무겁고(5076 g), 날개 길이가 가장 김(217.19 mm). Biscoe 섬에서만 발견됨."
+  },
+  {
+    "objectID": "posts/penguin/index.html",
+    "href": "posts/penguin/index.html",
+    "title": "palmer penguin",
+    "section": "",
+    "text": "# 라이브러리 로드\nfrom palmerpenguins import load_penguins\nimport pandas as pd\n\n# 데이터 불러오기\npenguins = load_penguins()\n\n# 데이터 확인\npenguins.head() # 상위 5개 행 출력\npenguins[\"species\"].unique()  # 종 확인\n\narray(['Adelie', 'Gentoo', 'Chinstrap'], dtype=object)\n\n\n\n\n\n\n\n\n\n\n\nColumn Name\n의미\n예제 값\n\n\n\n\nspecies\n펭귄의 종\nAdelie, Chinstreap, Gentoo\n\n\nisland\n펭귄이 발견된 섬 이름\nTorgersen, Biscoe, Dream\n\n\nbill_length_mm\n부리 길이 (mm)\n39.1, 48.7, 50.0\n\n\nbill_depth_mm\n부리 깊이 (mm)\n18.7, 17.4, 15.9\n\n\nflipper_length_mm\n날개 길이 (mm)\n181, 195, 210\n\n\nbody_mass_g\n체중 (g)\n3750, 3800, 5000\n\n\nsex\n성별\nmale, female\n\n\nyear\n데이터 수집 연도\n2007, 2008, 2009\n\n\n\n\n\n\n\n# 종별 요약 통계 계산\nspecies_summary = penguins.groupby(\"species\").describe()\n\n# 종별 주요 특징 출력\nprint(species_summary['bill_length_mm'])  # 부리 길이\nprint(species_summary['bill_depth_mm'])  # 부리 깊이\nprint(species_summary['flipper_length_mm'])  # 날개 길이\nprint(species_summary['body_mass_g'])  # 몸무게\n\n\n\n종\n부리 길이\n부리 깊이\n날개 길이\n체중\n\n\n\n\nAdelie\n38.79 mm\n18.35 mm\n189.95 mm\n3700 g\n\n\nChinstrap\n48.83 mm\n18.42 mm\n195.82 mm\n3733 g\n\n\nGentoo\n47.50 mm\n14.98 mm\n217.19 mm\n5076 g\n\n\n\n\n\n\n부리 길이: Chinstrap 펭귄이 가장 길고(48.83 mm), Adelie가 가장 짧음(38.79 mm).\n부리 깊이: 세 종 모두 비슷하지만, Gentoo 펭귄이 가장 얕음(14.98 mm).\n날개 길이: Gentoo 펭귄이 가장 길고(217.19 mm), Adelie가 가장 짧음(189.95 mm).\n몸무게: Gentoo 펭귄이 가장 무거움(5076 g), Adelie가 가장 가벼움(3700 g).\n\n\n\n\n\n# 종별 서식지 분포\nspecies_island = penguins.groupby([\"species\", \"island\"]).size()\nprint(species_island)\n\n\n\n종\n서식지\n개체 수\n\n\n\n\nAdelie\nBiscoe\n44\n\n\nAdelie\nDream\n56\n\n\nAdelie\nTorgersen\n52\n\n\nChinstrap\nDream\n68\n\n\nGentoo\nBiscoe\n124\n\n\n\n\n\n\nAdelie 펭귄은 세 개의 섬(Biscoe, Dream, Torgersen) 모두에서 발견됨.\nChinstrap 펭귄은 Dream 섬에서만 발견됨.\nGentoo 펭귄은 Biscoe 섬에서만 발견됨.\n\n\n\n\n\n# 종별 성별 분포\nspecies_sex = penguins.groupby([\"species\", \"sex\"]).size()\nprint(species_sex)\n\n\n\n종(species)\n성별(sex)\n개체 수\n\n\n\n\nAdelie\nMale\n73\n\n\nAdelie\nFemale\n73\n\n\nChinstrap\nMale\n34\n\n\nChinstrap\nFemale\n34\n\n\nGentoo\nMale\n58\n\n\nGentoo\nFemale\n61\n\n\n\n\n\n\n모든 종에서 암수 개체 수가 거의 비슷함.\n성비는 Adelie와 Chinstrap에서 정확히 1:1이며, Gentoo는 수컷이 약간 많음.\n\n\n\n\n\n\n\n\n\n\n\n\n종(Species)\n주요 특징\n\n\n\n\nAdelie\n부리 길이가 가장 짧고, 몸무게가 가장 가벼움 (3700g). 세 개의 섬에서 발견됨.\n\n\nChinstrap\n부리 길이가 가장 길고(48.83 mm), Dream 섬에서만 발견됨.\n\n\nGentoo\n몸무게가 가장 무겁고(5076 g), 날개 길이가 가장 김(217.19 mm). Biscoe 섬에서만 발견됨."
+  },
+  {
+    "objectID": "posts/penguin/index.html#데이터-로드-및-기본-정보-확인",
+    "href": "posts/penguin/index.html#데이터-로드-및-기본-정보-확인",
+    "title": "palmer penguin",
+    "section": "",
+    "text": "# 라이브러리 로드\nfrom palmerpenguins import load_penguins\nimport pandas as pd\n\n# 데이터 불러오기\npenguins = load_penguins()\n\n# 데이터 확인\npenguins.head() # 상위 5개 행 출력\npenguins[\"species\"].unique()  # 종 확인\n\narray(['Adelie', 'Gentoo', 'Chinstrap'], dtype=object)\n\n\n\n\n\n\n\n\n\n\n\nColumn Name\n의미\n예제 값\n\n\n\n\nspecies\n펭귄의 종\nAdelie, Chinstreap, Gentoo\n\n\nisland\n펭귄이 발견된 섬 이름\nTorgersen, Biscoe, Dream\n\n\nbill_length_mm\n부리 길이 (mm)\n39.1, 48.7, 50.0\n\n\nbill_depth_mm\n부리 깊이 (mm)\n18.7, 17.4, 15.9\n\n\nflipper_length_mm\n날개 길이 (mm)\n181, 195, 210\n\n\nbody_mass_g\n체중 (g)\n3750, 3800, 5000\n\n\nsex\n성별\nmale, female\n\n\nyear\n데이터 수집 연도\n2007, 2008, 2009"
+  },
+  {
+    "objectID": "posts/penguin/index.html#종별-주요-특징-평균값-비교",
+    "href": "posts/penguin/index.html#종별-주요-특징-평균값-비교",
+    "title": "palmer penguin",
+    "section": "",
+    "text": "# 종별 요약 통계 계산\nspecies_summary = penguins.groupby(\"species\").describe()\n\n# 종별 주요 특징 출력\nprint(species_summary['bill_length_mm'])  # 부리 길이\nprint(species_summary['bill_depth_mm'])  # 부리 깊이\nprint(species_summary['flipper_length_mm'])  # 날개 길이\nprint(species_summary['body_mass_g'])  # 몸무게\n\n\n\n종\n부리 길이\n부리 깊이\n날개 길이\n체중\n\n\n\n\nAdelie\n38.79 mm\n18.35 mm\n189.95 mm\n3700 g\n\n\nChinstrap\n48.83 mm\n18.42 mm\n195.82 mm\n3733 g\n\n\nGentoo\n47.50 mm\n14.98 mm\n217.19 mm\n5076 g\n\n\n\n\n\n\n부리 길이: Chinstrap 펭귄이 가장 길고(48.83 mm), Adelie가 가장 짧음(38.79 mm).\n부리 깊이: 세 종 모두 비슷하지만, Gentoo 펭귄이 가장 얕음(14.98 mm).\n날개 길이: Gentoo 펭귄이 가장 길고(217.19 mm), Adelie가 가장 짧음(189.95 mm).\n몸무게: Gentoo 펭귄이 가장 무거움(5076 g), Adelie가 가장 가벼움(3700 g)."
+  },
+  {
+    "objectID": "posts/penguin/index.html#종별-서식지island-분포",
+    "href": "posts/penguin/index.html#종별-서식지island-분포",
+    "title": "palmer penguin",
+    "section": "",
+    "text": "# 종별 서식지 분포\nspecies_island = penguins.groupby([\"species\", \"island\"]).size()\nprint(species_island)\n\n\n\n종\n서식지\n개체 수\n\n\n\n\nAdelie\nBiscoe\n44\n\n\nAdelie\nDream\n56\n\n\nAdelie\nTorgersen\n52\n\n\nChinstrap\nDream\n68\n\n\nGentoo\nBiscoe\n124\n\n\n\n\n\n\nAdelie 펭귄은 세 개의 섬(Biscoe, Dream, Torgersen) 모두에서 발견됨.\nChinstrap 펭귄은 Dream 섬에서만 발견됨.\nGentoo 펭귄은 Biscoe 섬에서만 발견됨."
+  },
+  {
+    "objectID": "posts/penguin/index.html#종별-성별-sex-분포",
+    "href": "posts/penguin/index.html#종별-성별-sex-분포",
+    "title": "palmer penguin",
+    "section": "",
+    "text": "# 종별 성별 분포\nspecies_sex = penguins.groupby([\"species\", \"sex\"]).size()\nprint(species_sex)\n\n\n\n종(species)\n성별(sex)\n개체 수\n\n\n\n\nAdelie\nMale\n73\n\n\nAdelie\nFemale\n73\n\n\nChinstrap\nMale\n34\n\n\nChinstrap\nFemale\n34\n\n\nGentoo\nMale\n58\n\n\nGentoo\nFemale\n61\n\n\n\n\n\n\n모든 종에서 암수 개체 수가 거의 비슷함.\n성비는 Adelie와 Chinstrap에서 정확히 1:1이며, Gentoo는 수컷이 약간 많음."
+  },
+  {
+    "objectID": "posts/penguin/index.html#결론-종별-특징-요약",
+    "href": "posts/penguin/index.html#결론-종별-특징-요약",
+    "title": "palmer penguin",
+    "section": "",
+    "text": "종(Species)\n주요 특징\n\n\n\n\nAdelie\n부리 길이가 가장 짧고, 몸무게가 가장 가벼움 (3700g). 세 개의 섬에서 발견됨.\n\n\nChinstrap\n부리 길이가 가장 길고(48.83 mm), Dream 섬에서만 발견됨.\n\n\nGentoo\n몸무게가 가장 무겁고(5076 g), 날개 길이가 가장 김(217.19 mm). Biscoe 섬에서만 발견됨."
   }
 ]

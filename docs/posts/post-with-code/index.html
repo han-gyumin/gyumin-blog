@@ -190,17 +190,274 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>This is a post with executable code.</p>
-<div id="4ca2cb14" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>np.arange(<span class="dv">10</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="palmer_penguins-요약" class="level1">
+<h1>palmer_penguins 요약</h1>
+<section id="데이터-로드-및-기본-정보-확인" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-로드-및-기본-정보-확인">1. 데이터 로드 및 기본 정보 확인</h2>
+<div id="d53d9ede" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 라이브러리 로드</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터 불러오기</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> load_penguins()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터 확인</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>penguins.head() <span class="co"># 상위 5개 행 출력</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">"species"</span>].unique()  <span class="co"># 종 확인</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre>
+<pre><code>array(['Adelie', 'Gentoo', 'Chinstrap'], dtype=object)</code></pre>
 </div>
 </div>
+<div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 32%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Column Name</th>
+<th style="text-align: center;">의미</th>
+<th style="text-align: center;">예제 값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">species</td>
+<td style="text-align: center;">펭귄의 종</td>
+<td style="text-align: center;">Adelie, Chinstreap, Gentoo</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">island</td>
+<td style="text-align: center;">펭귄이 발견된 섬 이름</td>
+<td style="text-align: center;">Torgersen, Biscoe, Dream</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">bill_length_mm</td>
+<td style="text-align: center;">부리 길이 (mm)</td>
+<td style="text-align: center;">39.1, 48.7, 50.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">bill_depth_mm</td>
+<td style="text-align: center;">부리 깊이 (mm)</td>
+<td style="text-align: center;">18.7, 17.4, 15.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">flipper_length_mm</td>
+<td style="text-align: center;">날개 길이 (mm)</td>
+<td style="text-align: center;">181, 195, 210</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">body_mass_g</td>
+<td style="text-align: center;">체중 (g)</td>
+<td style="text-align: center;">3750, 3800, 5000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">sex</td>
+<td style="text-align: center;">성별</td>
+<td style="text-align: center;">male, female</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">year</td>
+<td style="text-align: center;">데이터 수집 연도</td>
+<td style="text-align: center;">2007, 2008, 2009</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="종별-주요-특징-평균값-비교" class="level2">
+<h2 class="anchored" data-anchor-id="종별-주요-특징-평균값-비교">2. 종별 주요 특징 (평균값 비교)</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 종별 요약 통계 계산</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>species_summary <span class="op">=</span> penguins.groupby(<span class="st">"species"</span>).describe()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 종별 주요 특징 출력</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_summary[<span class="st">'bill_length_mm'</span>])  <span class="co"># 부리 길이</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_summary[<span class="st">'bill_depth_mm'</span>])  <span class="co"># 부리 깊이</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_summary[<span class="st">'flipper_length_mm'</span>])  <span class="co"># 날개 길이</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_summary[<span class="st">'body_mass_g'</span>])  <span class="co"># 몸무게</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">종</th>
+<th style="text-align: center;">부리 길이</th>
+<th style="text-align: center;">부리 깊이</th>
+<th style="text-align: center;">날개 길이</th>
+<th style="text-align: center;">체중</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Adelie</td>
+<td style="text-align: center;">38.79 mm</td>
+<td style="text-align: center;">18.35 mm</td>
+<td style="text-align: center;">189.95 mm</td>
+<td style="text-align: center;">3700 g</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Chinstrap</td>
+<td style="text-align: center;">48.83 mm</td>
+<td style="text-align: center;">18.42 mm</td>
+<td style="text-align: center;">195.82 mm</td>
+<td style="text-align: center;">3733 g</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Gentoo</td>
+<td style="text-align: center;">47.50 mm</td>
+<td style="text-align: center;">14.98 mm</td>
+<td style="text-align: center;">217.19 mm</td>
+<td style="text-align: center;">5076 g</td>
+</tr>
+</tbody>
+</table>
+<section id="분석" class="level3">
+<h3 class="anchored" data-anchor-id="분석">🎢분석</h3>
+<ul>
+<li><p><strong>부리 길이:</strong> Chinstrap 펭귄이 가장 길고(48.83 mm), Adelie가 가장 짧음(38.79 mm).</p></li>
+<li><p><strong>부리 깊이:</strong> 세 종 모두 비슷하지만, Gentoo 펭귄이 가장 얕음(14.98 mm).</p></li>
+<li><p><strong>날개 길이:</strong> Gentoo 펭귄이 가장 길고(217.19 mm), Adelie가 가장 짧음(189.95 mm).</p></li>
+<li><p><strong>몸무게:</strong> Gentoo 펭귄이 가장 무거움(5076 g), Adelie가 가장 가벼움(3700 g).</p></li>
+</ul>
+</section>
+</section>
+<section id="종별-서식지island-분포" class="level2">
+<h2 class="anchored" data-anchor-id="종별-서식지island-분포">3. 종별 서식지(island) 분포</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 종별 서식지 분포</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>species_island <span class="op">=</span> penguins.groupby([<span class="st">"species"</span>, <span class="st">"island"</span>]).size()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">종</th>
+<th style="text-align: center;">서식지</th>
+<th style="text-align: center;">개체 수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Adelie</td>
+<td style="text-align: center;">Biscoe</td>
+<td style="text-align: center;">44</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Adelie</td>
+<td style="text-align: center;">Dream</td>
+<td style="text-align: center;">56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Adelie</td>
+<td style="text-align: center;">Torgersen</td>
+<td style="text-align: center;">52</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Chinstrap</td>
+<td style="text-align: center;">Dream</td>
+<td style="text-align: center;">68</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Gentoo</td>
+<td style="text-align: center;">Biscoe</td>
+<td style="text-align: center;">124</td>
+</tr>
+</tbody>
+</table>
+<section id="분석-1" class="level3">
+<h3 class="anchored" data-anchor-id="분석-1">🎢분석</h3>
+<ul>
+<li><p>Adelie 펭귄은 <strong>세 개의 섬(Biscoe, Dream, Torgersen)</strong> 모두에서 발견됨.</p></li>
+<li><p>Chinstrap 펭귄은 <strong>Dream 섬</strong>에서만 발견됨.</p></li>
+<li><p>Gentoo 펭귄은 <strong>Biscoe 섬</strong>에서만 발견됨.</p></li>
+</ul>
+</section>
+</section>
+<section id="종별-성별-sex-분포" class="level2">
+<h2 class="anchored" data-anchor-id="종별-성별-sex-분포">4. 종별 성별 (sex) 분포</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 종별 성별 분포</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>species_sex <span class="op">=</span> penguins.groupby([<span class="st">"species"</span>, <span class="st">"sex"</span>]).size()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(species_sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">종(species)</th>
+<th style="text-align: center;">성별(sex)</th>
+<th style="text-align: center;">개체 수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Adelie</td>
+<td style="text-align: center;">Male</td>
+<td style="text-align: center;">73</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Adelie</td>
+<td style="text-align: center;">Female</td>
+<td style="text-align: center;">73</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Chinstrap</td>
+<td style="text-align: center;">Male</td>
+<td style="text-align: center;">34</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Chinstrap</td>
+<td style="text-align: center;">Female</td>
+<td style="text-align: center;">34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Gentoo</td>
+<td style="text-align: center;">Male</td>
+<td style="text-align: center;">58</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Gentoo</td>
+<td style="text-align: center;">Female</td>
+<td style="text-align: center;">61</td>
+</tr>
+</tbody>
+</table>
+<section id="분석-2" class="level3">
+<h3 class="anchored" data-anchor-id="분석-2">🎢분석</h3>
+<ul>
+<li><p>모든 종에서 <strong>암수 개체 수가 거의 비슷함</strong>.</p></li>
+<li><p>성비는 Adelie와 Chinstrap에서 정확히 1:1이며, Gentoo는 수컷이 약간 많음.</p></li>
+</ul>
+</section>
+</section>
+<section id="결론-종별-특징-요약" class="level2">
+<h2 class="anchored" data-anchor-id="결론-종별-특징-요약"><strong>5. 결론: 종별 특징 요약</strong></h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">종(Species)</th>
+<th style="text-align: center;">주요 특징</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Adelie</strong></td>
+<td style="text-align: center;">부리 길이가 가장 짧고, 몸무게가 가장 가벼움 (3700g). 세 개의 섬에서 발견됨.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Chinstrap</strong></td>
+<td style="text-align: center;">부리 길이가 가장 길고(48.83 mm), Dream 섬에서만 발견됨.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Gentoo</strong></td>
+<td style="text-align: center;">몸무게가 가장 무겁고(5076 g), 날개 길이가 가장 김(217.19 mm). Biscoe 섬에서만 발견됨.</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
