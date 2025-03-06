@@ -11,9 +11,4 @@ page-layout: full
 title-block-banner: true
 ---
 
-```{python}
-import numpy as np
-a=np.arange(10)
-a
 
-```
