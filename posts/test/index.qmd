@@ -1,0 +1,25 @@
+---
+title: "post test"
+author: "han"
+date: "2025-03-07"
+image: "python.jfif"
+categories: [news]
+---
+
+## blog test
+
+It's blog test!
+
+## 파이썬 데이터 분석
+
+## 넘파이
+
+넘파이 패키지를 불러봅시다!
+
+```{python}
+
+import numpy as np
+a=np.arange(10)
+a
+
+```
