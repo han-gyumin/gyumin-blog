@@ -1,5 +1,5 @@
 ---
-title: "gyumin-blog"
+title: "gyumin"
 listing:
   contents: posts
   sort: "date desc"
